@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="TP/Tpbellino/src"/>
+	<classpathentry kind="src" path="TPBellino1/Tpbellino/src"/>
+	<classpathentry kind="src" path="TPBellino2/TPBellino/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="TPBellino/bin"/>
+</classpath>
