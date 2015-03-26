@@ -10,5 +10,6 @@ public class LauncherApp {
 		// action a adopter quand on ferme la fenetre
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
 	}
 }
