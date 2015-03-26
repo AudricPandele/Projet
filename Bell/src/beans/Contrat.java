@@ -1,6 +1,14 @@
 package beans;
 
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.sql.Connection;
+
+import com.mysql.jdbc.Statement;
+
+import Connection.Conn;
 
 public class Contrat {
 	
@@ -58,4 +66,19 @@ public class Contrat {
 	public void setDate(Date date) {
 		this.date = date;
 	} 
+	
+	public static void main(String[] argv) throws SQLException, ClassNotFoundException {
+		
+		Conn conn = new Conn();
+		Connection connection = conn.getConnect();
+
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet resultat = statement.executeQuery( "SELECT *  FROM contrat;" );
+
+		while ( resultat.next() ) {
+		    String fournisseur = resultat.getString( "client" );
+		    System.out.println(fournisseur);
+
+		}
+	  }
 }

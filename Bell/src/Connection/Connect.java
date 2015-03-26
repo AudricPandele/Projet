@@ -2,11 +2,14 @@ package Connection;
  
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.jdbc.Statement;
  
 public class Connect {
  
-  public static void main(String[] argv) {
+  public static void main(String[] argv) throws SQLException {
  
 	System.out.println("-------- MySQL JDBC Connection Testing ------------");
  
@@ -23,7 +26,7 @@ public class Connect {
  
 	try {
 		connection = DriverManager
-		.getConnection("jdbc:mysql://localhost:3306/bellino","root", "root");
+		.getConnection("jdbc:mysql://localhost/bellino","projet", "");
  
 	} catch (SQLException e) {
 		System.out.println("Connection Failed! Check output console");
@@ -35,6 +38,19 @@ public class Connect {
 		System.out.println("You made it, take control your database now!");
 	} else {
 		System.out.println("Failed to make connection!");
+	}
+	
+	Statement statement = (Statement) connection.createStatement();
+	
+	ResultSet resultat = statement.executeQuery( "SELECT fournisseur  FROM contrat;" );
+
+	/* Récupération des données du résultat de la requête de lecture */
+	while ( resultat.next() ) {
+	    String fournisseur = resultat.getString( "fournisseur" );
+	    System.out.println(fournisseur);
+
+
+	    /* Traiter ici les valeurs récupérées. */
 	}
   }
 }
