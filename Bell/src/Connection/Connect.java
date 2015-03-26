@@ -6,7 +6,7 @@ import java.sql.SQLException;
  
 public class Connect {
  
-  public static void main(String[] argv) {
+  public void conn() {
  
 	System.out.println("-------- MySQL JDBC Connection Testing ------------");
  
@@ -23,7 +23,7 @@ public class Connect {
  
 	try {
 		connection = DriverManager
-		.getConnection("jdbc:mysql://localhost:3306/bellino","root", "root");
+		.getConnection("jdbc:mysql://localhost/bellino","projet", "");
  
 	} catch (SQLException e) {
 		System.out.println("Connection Failed! Check output console");
@@ -36,5 +36,6 @@ public class Connect {
 	} else {
 		System.out.println("Failed to make connection!");
 	}
+	
   }
 }
