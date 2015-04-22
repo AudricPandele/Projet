@@ -76,7 +76,7 @@ public class Contrat {
 		ResultSet resultat = statement.executeQuery( "SELECT *  FROM contrat;" );
 
 		while ( resultat.next() ) {
-		    String fournisseur = resultat.getString( "client" );
+		    String fournisseur = resultat.getString( "titre" );
 		    System.out.println(fournisseur);
 
 		}
