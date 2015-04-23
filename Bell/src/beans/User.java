@@ -1,5 +1,10 @@
 package beans;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class User {
 	private String nom;
 	private String prenom;
@@ -45,6 +50,25 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public static ResultSet selectAll(){
+		try{
+            
+            //MAKE SURE YOU KEEP THE mysql_connector.jar file in java/lib folder
+            //ALSO SET THE CLASSPATH
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/bellino","projet", "");
+            PreparedStatement pst = con.prepareStatement("select * from user");
+            ResultSet rs = pst.executeQuery();
+            return rs;
+             
+           }
+        catch (Exception e) 
+        {
+            System.out.println(e);
+        }
+		return null;
 	}
 	
 	
