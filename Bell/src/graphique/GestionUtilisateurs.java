@@ -18,7 +18,7 @@ public class GestionUtilisateurs extends JPanel implements ActionListener {
 	private Dimension buttonConnDim;
 
 	public GestionUtilisateurs(){		
-		setLayout(null);		
+		setLayout(null);	
 		JCheckBox onglet1 = new JCheckBox();
 		JCheckBox onglet2 = new JCheckBox();
 		JCheckBox onglet3 = new JCheckBox();

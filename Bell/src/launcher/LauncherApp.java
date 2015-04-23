@@ -7,7 +7,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
-import Connection.swing_sample;
+import com.sun.xml.internal.ws.api.server.Adapter.Toolkit;
+
 import graphique.*;
 
 public class LauncherApp {
@@ -37,5 +38,7 @@ public class LauncherApp {
 		sample.setSize(250,125);
 		sample.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		sample.setVisible(true);
+		sample.setResizable(false);
+		sample.setLocationRelativeTo(null);
 	}
 }

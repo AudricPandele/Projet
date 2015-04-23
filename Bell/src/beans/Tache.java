@@ -1,12 +1,11 @@
 package beans;
 
+import graphique.*;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import Connection.*;
-
 import com.mysql.jdbc.Statement;
 
 public class Tache {
