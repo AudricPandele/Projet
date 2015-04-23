@@ -1,9 +1,13 @@
 package launcher;
 import java.sql.SQLException;
+import javax.swing.JFrame;
+import beans.*;
+import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
-import beans.*;
 import graphique.*;
 import Connection.*;
 
@@ -14,8 +18,5 @@ public class LauncherApp {
 		// action a adopter quand on ferme la fenetre
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-		
-		
 	}
 }

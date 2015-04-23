@@ -6,10 +6,10 @@ public class Frame extends JFrame {
 	{
 		// titre + taille
 		setTitle("Hello world !");
-		setSize(400,350);
+		setSize(600,400);
 		
 		// instanciation d'un objet MonPanel
-		Panel panel = new Panel();
+		Menu panel = new Menu();
 		this.add(panel);
 	}
 }

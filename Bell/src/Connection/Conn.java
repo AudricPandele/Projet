@@ -11,6 +11,7 @@ public class Conn {
 		//Class.forName("com.mysql.jdbc.Driver");
 		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/bellino","projet", "");
 		
+		
 	}
 	
 	public Connection getConnect() {
