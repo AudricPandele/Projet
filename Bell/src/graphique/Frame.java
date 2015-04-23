@@ -35,6 +35,13 @@ public class Frame extends JFrame  {
 			this.add(addclient);
 		}
 		
+		else if (frame.equalsIgnoreCase("GestionF"))
+		{
+			setTitle("Gestion Factures");
+			Factures factures = new Factures();
+			this.add(factures);
+		}
+		
 	}
 	
 }

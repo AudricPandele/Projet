@@ -48,6 +48,18 @@ public class Menu extends JPanel implements ActionListener {
             }
         });
 		
+		onglet3.addActionListener( new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+            	Frame Factures = new Frame("gestionF");
+            	Factures.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            	Factures.setVisible(true);
+            	Factures.setSize(680, 400);
+            	Factures.setLocationRelativeTo(null);
+            }
+        });
+		
 		onglet5.addActionListener( new ActionListener() {
             
             @Override
