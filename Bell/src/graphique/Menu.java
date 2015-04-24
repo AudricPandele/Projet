@@ -9,15 +9,12 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import com.sun.javafx.font.Disposer;
-
 import beans.User;
 
 public class Menu extends JPanel implements ActionListener {
 	private Dimension buttonConnDim;
 
-	public Menu(JFrame frame){
+	public Menu(final JFrame frame){
 		setLayout(null);		
 		JButton onglet1 = new JButton("Gestion utilisateurs");
 		JButton onglet2 = new JButton("Gestion clients");

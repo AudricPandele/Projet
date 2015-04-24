@@ -7,19 +7,20 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.sql.Date;
+import java.util.Calendar;
 public class AddContrats extends JFrame
 {
     //declaring our swing components
 	JLabel l_titre ,l_fournisseur,l_client, l_tache, l_desc, l_prix, l_bonus;
-    JTextField t_titre, t_tache, t_desc, t_prix, t_bonus;
-    JCheckBox t_fournisseur,t_client;
+    JTextField t_titre, t_tache, t_desc, t_prix, t_bonus,t_fournisseur,t_client;
     JButton button;
  
     //a inner class to handling ActionEvents
-    //handler2 handle;
+    handler2 handle;
  
     //a separate class for processing database connection and authentication
-    //insertContrat db;
+    insertContrat db;
  
     public AddContrats()
     {
@@ -27,8 +28,8 @@ public class AddContrats extends JFrame
  
  
         //extra classes
-        //db=new insertContrat();
-        //handle =new handler2();
+        db=new insertContrat();
+        handle =new handler2();
  
             setLayout(null);
                 //swing components
@@ -40,8 +41,8 @@ public class AddContrats extends JFrame
             l_prix = new JLabel("Prix");
             l_bonus = new JLabel("Bonus / Malus");
             t_titre = new JTextField();
-            t_fournisseur = new JCheckBox();
-            t_client = new JCheckBox();
+            t_fournisseur = new JTextField();
+            t_client = new JTextField();
             t_tache = new JTextField();
             t_desc = new JTextField();
             t_prix = new JTextField();
@@ -49,7 +50,7 @@ public class AddContrats extends JFrame
             button = new JButton("Ajouter");
         
         //adding actionlistener to the button
-       // button.addActionListener(handle);
+        button.addActionListener(handle);
  
         //add to contaienr
        
@@ -71,10 +72,10 @@ public class AddContrats extends JFrame
         
         l_titre.setBounds(10, 10, 100, 20);
         t_titre.setBounds(110, 10, 200, 20);
-        l_fournisseur.setBounds(10, 40, 100, 20);
-        t_fournisseur.setBounds(110, 40, 20, 20);
-        l_client.setBounds(170,40, 100, 20);
-        t_client.setBounds(150, 40, 20, 20);
+        l_fournisseur.setBounds(10, 40, 80, 20);
+        t_fournisseur.setBounds(80, 40, 100, 20);
+        l_client.setBounds(220,40, 100, 20);
+        t_client.setBounds(260, 40, 100, 20);
         l_tache.setBounds(10, 70, 100, 20);       
         t_tache.setBounds(110, 70, 200, 20);
         l_desc.setBounds(10, 100, 100, 20);
@@ -83,7 +84,7 @@ public class AddContrats extends JFrame
         t_prix.setBounds(110, 130, 200, 20);
         l_bonus.setBounds(10, 160, 100, 20);       
         t_bonus.setBounds(110, 160, 200, 20);
-        button.setBounds(200, 300, 100, 20);
+        button.setBounds(150, 250, 100, 20);
       
         //visual
         setVisible(true);
@@ -92,7 +93,7 @@ public class AddContrats extends JFrame
     }
  
     //an inner class .You can also write as a separate class
-    /*class handler2 implements ActionListener
+    class handler2 implements ActionListener
     {
         //must implement method
         //This is triggered whenever the user clicks the login button
@@ -101,27 +102,33 @@ public class AddContrats extends JFrame
             //checks if the button clicked
             if(ae.getSource()==button)
             {                
-            	int phone = Integer.parseInt(t_phone.getText());
-            	
-                System.out.println(t_sociale.getText()+" "+t_siret.getText()+" "+t_adresse.getText()+" "+phone);
+            	int fournisseur = Integer.parseInt(t_fournisseur.getText());
+            	int client = Integer.parseInt(t_client.getText());
+            	int tache = Integer.parseInt(t_tache.getText());
+            	float prix = Float.parseFloat(t_prix.getText());
+            	float bonus = Float.parseFloat(t_bonus.getText());
+            	prix = prix + bonus;
+            	//date
+            	java.text.SimpleDateFormat formater;
+                String format = "dd-MM-yy";
+				formater = new java.text.SimpleDateFormat( format  );
+                java.util.Date date = new java.util.Date();                 
+                String days="";// cette variable recevra la date entière
+                days+=formater.format(date);
+                
+                System.out.println(t_titre.getText()+" "+fournisseur+" "+client+" "+tache+" "+t_desc.getText()+" "+prix+" "+days);
  
                 //The entered username and password are sent via "checkLogin()" which return boolean
-                if(db.checkLogin(t_sociale.getText(), t_siret.getText(), t_adresse.getText(),phone))
-                {
+                if(db.checkLogin(t_titre.getText(), fournisseur, client, tache, t_desc.getText(), prix, days));
+                { 
                     //a pop-up box
-                    JOptionPane.showMessageDialog(null, "Client ajouté","Success",
+                    JOptionPane.showMessageDialog(null, "Contrat ajouté","Success",
                                         JOptionPane.INFORMATION_MESSAGE);
                     //Frame menu = new Frame("menu");
                     //menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             		//menu.setVisible(true);
             		//dispose();
                     dispose();
-                }
-                else
-                {
-                    //a pop-up box
-                    JOptionPane.showMessageDialog(null, "Inscription failed!","Failed!!",
-                                        JOptionPane.ERROR_MESSAGE);
                 }
             }//if
             
@@ -133,5 +140,5 @@ public class AddContrats extends JFrame
             }
         }//method
  
-    }//Inner class*/
+    }//Inner class
 }//class
