@@ -27,8 +27,8 @@ import beans.User;
 
 public class GestionUtilisateurs extends JPanel implements ActionListener {
 	private Dimension buttonConnDim;
-	private List noms = new ArrayList();
-	private List prenoms = new ArrayList();
+	private ArrayList<String> noms = new ArrayList<String>();
+	private ArrayList<String> prenoms = new ArrayList<String>();
 
 	public GestionUtilisateurs() throws ClassNotFoundException, SQLException{	
 		Conn conn = new Conn();
@@ -39,60 +39,67 @@ public class GestionUtilisateurs extends JPanel implements ActionListener {
 		
 		// Je stocke tous les noms et prénoms dans les arrayList
 		while (resultat.next()) {
+			
 			noms.add(resultat.getString(2));
 			prenoms.add(resultat.getString(3));
-		}   		
+		} // IMPOSSIBLE D'UTILISER LES ELEMENT .GET  		
 		
-		setLayout(null);	
-		JCheckBox onglet1 = new JCheckBox();
-		JCheckBox onglet2 = new JCheckBox();
-		JCheckBox onglet3 = new JCheckBox();
-		JCheckBox onglet4 = new JCheckBox();
-		JLabel flname =new JLabel("Nom - Pr�nom");
+		setLayout(null);		
+		JLabel flname =new JLabel("Nom - Pr�nom");
 		JLabel member =new JLabel("Membre");
 		JLabel employee =new JLabel("Employee");
 		JLabel moderator =new JLabel("Moderateur");
 		JLabel admin =new JLabel("Admin");
-		
-		// Création du label pour le premier nom, il faut la rendre dynamique, voir aussi les JList
-		JLabel name =new JLabel((String) noms.get(1)+" "+prenoms.get(1));
-		JButton submit = new JButton("Enregistrer");
-		
+		int i=0;
+		while(i<noms.size()){
+			JLabel name =new JLabel(prenoms.get(i));
+			JButton submit = new JButton("Enregistrer");
+	        add(name);
+	        add(submit);
+	        name.setBounds(10,i*30+60,100,20);
+	        submit.setBounds(600,i*30+60,100,20);
+	        JCheckBox onglet1 = new JCheckBox();
+			JCheckBox onglet2 = new JCheckBox();
+			JCheckBox onglet3 = new JCheckBox();
+			JCheckBox onglet4 = new JCheckBox();
+			add(onglet1);
+		    add(onglet2);
+		    add(onglet3);
+		    add(onglet4);
+
+			buttonConnDim = onglet1.getPreferredSize();
+			onglet1.setBounds(200, i*30+60, 20, 20);
+			
+			buttonConnDim = onglet2.getPreferredSize();
+			onglet2.setBounds(300, i*30+60, 20, 20);
+			
+			buttonConnDim = onglet3.getPreferredSize();
+			onglet3.setBounds(400, i*30+60, 20, 20);
+			
+			buttonConnDim = onglet4.getPreferredSize();
+			onglet4.setBounds(500, i*30+60, 20, 20);
+			i++;
+		}
 		// MAIS JE N'Y ARRIVE PAS (enculé)
 		
-        add(onglet1);
-        add(onglet2);
-        add(onglet3);
-        add(onglet4);
+       
         add(flname);
         add(member);
         add(employee);
         add(moderator);
         add(admin);
-        add(name);
-        add(submit);
+        //add(submit);
        
-		buttonConnDim = onglet1.getPreferredSize();
-		onglet1.setBounds(200, 60, 20, 20);
 		
-		buttonConnDim = onglet2.getPreferredSize();
-		onglet2.setBounds(300, 60, 20, 20);
-		
-		buttonConnDim = onglet3.getPreferredSize();
-		onglet3.setBounds(400, 60, 20, 20);
-		
-		buttonConnDim = onglet4.getPreferredSize();
-		onglet4.setBounds(500, 60, 20, 20);
-		
-		buttonConnDim = submit.getPreferredSize();
-		submit.setBounds(600, 60, 100, 30);
+		//buttonConnDim = submit.getPreferredSize();
+		//submit.setBounds(600, 60, 100, 30);
 		
 		flname.setBounds(10,10,150,25);
 		member.setBounds(200,10,150,25);
 		employee.setBounds(300,10,150,25);
 		moderator.setBounds(400,10,150,25);
 		admin.setBounds(500,10,150,25);
-		name.setBounds(10,60,150,25);
+		
 		
 	}
 

@@ -9,16 +9,6 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-<<<<<<< HEAD
-
-//import com.sun.javafx.font.Disposer;
-
-
-
-
-
-=======
->>>>>>> dba9c4f66ba6e45988f45dc82c0636c8f75f6672
 import beans.User;
 
 public class Menu extends JPanel implements ActionListener {
@@ -30,7 +20,7 @@ public class Menu extends JPanel implements ActionListener {
 		JButton onglet2 = new JButton("Gestion clients");
 		JButton onglet3 = new JButton("Gestion factures");
 		JButton onglet4 = new JButton("Gestion contrats");
-		JButton onglet5 = new JButton("Dï¿½connexion");
+		JButton onglet5 = new JButton("Déconnexion");
 		onglet1.addActionListener( new ActionListener() {
              
             @Override

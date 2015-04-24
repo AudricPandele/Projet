@@ -21,10 +21,10 @@ public class Contrats extends JPanel implements ActionListener {
 		setLayout(null);
 		JLabel contrat =new JLabel("Contrat");
 		JLabel prix =new JLabel("Prix");
-		JLabel add =new JLabel("Ajouter");
+		JLabel add =new JLabel("Ajouter Facture");
 		JCheckBox check = new JCheckBox();
-		JButton submit = new JButton("Valider");
-		JButton addC = new JButton("Ajouter");
+		JButton submit = new JButton("Creer Facture");
+		JButton addC = new JButton("Ajouter Contrat");
 		
         add(check);
         add(contrat);
@@ -36,13 +36,13 @@ public class Contrats extends JPanel implements ActionListener {
         
         buttonConnDim = contrat.getPreferredSize();
         contrat.setBounds(10, 10, 100, 20);
-        add.setBounds(200, 10, 100, 20);
+        add.setBounds(180, 10, 150, 20);
 		buttonConnDim = prix.getPreferredSize();
 		prix.setBounds(310,10,50,25);
 		buttonConnDim = check.getPreferredSize();
         check.setBounds(210, 30, 20, 20);
-        addC.setBounds(10, 340, 100, 20);
-        submit.setBounds(300, 340, 100, 20);
+        addC.setBounds(10, 340, 150, 20);
+        submit.setBounds(250, 340, 150, 20);
         
         addC.addActionListener( new ActionListener() {
             
