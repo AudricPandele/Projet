@@ -42,6 +42,20 @@ public class Frame extends JFrame  {
 			this.add(factures);
 		}
 		
+		else if (frame.equalsIgnoreCase("GestionCo"))
+		{
+			setTitle("Gestion Contrats");
+			GestionContrats contrats = new GestionContrats();
+			this.add(contrats);
+		}
+		
+		else if (frame.equalsIgnoreCase("Contrats"))
+		{
+			setTitle("Gestion Contrats");
+			Contrats contrats = new Contrats();
+			this.add(contrats);
+		}
+		
 	}
 	
 }

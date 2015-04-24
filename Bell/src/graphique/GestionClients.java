@@ -46,13 +46,27 @@ public class GestionClients extends JPanel implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent arg0) {
             	AddClient addClient = new AddClient();
-            	addClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             	addClient.setVisible(true);
             	addClient.setSize(420, 400);
             	addClient.setResizable(false);
             	addClient.setLocationRelativeTo(null);
             }
         });
+		
+		contrats.addActionListener( new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+            	Frame contrats = new Frame("contrats");
+            	contrats.setSize(420,400);
+            	contrats.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            	contrats.setVisible(true);
+            	contrats.setLocationRelativeTo(null);
+            }
+        });
+		
+		
+		
 		
 		
 	}

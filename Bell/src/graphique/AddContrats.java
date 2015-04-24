@@ -7,64 +7,83 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
-public class AddClient extends JFrame
+public class AddContrats extends JFrame
 {
     //declaring our swing components
-	JLabel l_sociale ,l_siret, l_adresse, l_phone;
-    JTextField t_sociale, t_siret, t_adresse, t_phone;
+	JLabel l_titre ,l_fournisseur,l_client, l_tache, l_desc, l_prix, l_bonus;
+    JTextField t_titre, t_tache, t_desc, t_prix, t_bonus;
+    JCheckBox t_fournisseur,t_client;
     JButton button;
  
     //a inner class to handling ActionEvents
-    handler2 handle;
+    //handler2 handle;
  
     //a separate class for processing database connection and authentication
-    insertClient db;
+    //insertContrat db;
  
-    public AddClient()
+    public AddContrats()
     {
-        super("Ajouter un client");
+        super("Ajouter un contrat");
  
  
         //extra classes
-        db=new insertClient();
-        handle =new handler2();
+        //db=new insertContrat();
+        //handle =new handler2();
  
             setLayout(null);
                 //swing components
-            l_sociale = new JLabel("Raison Sociale");
-            l_siret = new JLabel("SIRET");
-            l_adresse = new JLabel("Adresse");
-            l_phone = new JLabel("Téléphone");
-            t_sociale = new JTextField();
-            t_siret = new JTextField();
-            t_adresse = new JTextField();
-            t_phone = new JTextField();
+            l_titre = new JLabel("Titre");
+            l_fournisseur = new JLabel("Fourisseur");
+            l_client = new JLabel("Client");
+            l_tache = new JLabel("Tache");
+            l_desc = new JLabel("Description");
+            l_prix = new JLabel("Prix");
+            l_bonus = new JLabel("Bonus / Malus");
+            t_titre = new JTextField();
+            t_fournisseur = new JCheckBox();
+            t_client = new JCheckBox();
+            t_tache = new JTextField();
+            t_desc = new JTextField();
+            t_prix = new JTextField();
+            t_bonus = new JTextField();            
             button = new JButton("Ajouter");
         
         //adding actionlistener to the button
-        button.addActionListener(handle);
+       // button.addActionListener(handle);
  
         //add to contaienr
        
-        add(l_sociale);
-        add(l_siret);
-        add(l_adresse);
-        add(l_phone);
-        add(t_sociale);
-        add(t_siret);
-        add(t_adresse);
-        add(t_phone);
+        add(l_titre);
+        add(l_fournisseur);
+        add(l_client);
+        add(l_tache);
+        add(l_desc);
+        add(l_prix);
+        add(l_bonus);
+        add(t_titre);
+        add(t_fournisseur);
+        add(t_client);
+        add(t_tache);
+        add(t_desc);
+        add(t_prix);
+        add(t_bonus);
         add(button);
         
-        l_sociale.setBounds(10, 10, 400, 20);
-        t_sociale.setBounds(10, 40, 400, 20);
-        l_siret.setBounds(10, 70, 400, 20);
-        t_siret.setBounds(10, 100, 400, 20);
-        l_adresse.setBounds(10, 130, 400, 20);
-        t_adresse.setBounds(10, 160, 400, 20);
-        l_phone.setBounds(10, 190, 400, 20);       
-        t_phone.setBounds(10, 210, 400, 20);
-        button.setBounds(100, 250, 200, 20);
+        l_titre.setBounds(10, 10, 100, 20);
+        t_titre.setBounds(110, 10, 200, 20);
+        l_fournisseur.setBounds(10, 40, 100, 20);
+        t_fournisseur.setBounds(110, 40, 20, 20);
+        l_client.setBounds(170,40, 100, 20);
+        t_client.setBounds(150, 40, 20, 20);
+        l_tache.setBounds(10, 70, 100, 20);       
+        t_tache.setBounds(110, 70, 200, 20);
+        l_desc.setBounds(10, 100, 100, 20);
+        t_desc.setBounds(110, 100, 200, 20);
+        l_prix.setBounds(10, 130, 100, 20);       
+        t_prix.setBounds(110, 130, 200, 20);
+        l_bonus.setBounds(10, 160, 100, 20);       
+        t_bonus.setBounds(110, 160, 200, 20);
+        button.setBounds(200, 300, 100, 20);
       
         //visual
         setVisible(true);
@@ -73,7 +92,7 @@ public class AddClient extends JFrame
     }
  
     //an inner class .You can also write as a separate class
-    class handler2 implements ActionListener
+    /*class handler2 implements ActionListener
     {
         //must implement method
         //This is triggered whenever the user clicks the login button
@@ -114,5 +133,5 @@ public class AddClient extends JFrame
             }
         }//method
  
-    }//Inner class
+    }//Inner class*/
 }//class
