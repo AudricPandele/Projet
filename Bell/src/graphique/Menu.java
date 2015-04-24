@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+<<<<<<< HEAD
 
 //import com.sun.javafx.font.Disposer;
 
@@ -16,6 +17,8 @@ import javax.swing.JPanel;
 
 
 
+=======
+>>>>>>> dba9c4f66ba6e45988f45dc82c0636c8f75f6672
 import beans.User;
 
 public class Menu extends JPanel implements ActionListener {
