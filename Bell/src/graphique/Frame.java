@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 
 public class Frame extends JFrame  {
 	
-	public Frame(String frame){
+	public Frame(String frame) throws ClassNotFoundException, SQLException{
 		setResizable(false);
 		setLocationRelativeTo(null);
 		if(frame.equalsIgnoreCase("menu")){

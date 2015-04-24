@@ -10,25 +10,38 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.sun.javafx.font.Disposer;
+//import com.sun.javafx.font.Disposer;
+
+
+
+
 
 import beans.User;
 
 public class Menu extends JPanel implements ActionListener {
 	private Dimension buttonConnDim;
 
-	public Menu(JFrame frame){
+	public Menu(final JFrame frame){
 		setLayout(null);		
 		JButton onglet1 = new JButton("Gestion utilisateurs");
 		JButton onglet2 = new JButton("Gestion clients");
 		JButton onglet3 = new JButton("Gestion factures");
 		JButton onglet4 = new JButton("Gestion contrats");
-		JButton onglet5 = new JButton("Déconnexion");
+		JButton onglet5 = new JButton("Dï¿½connexion");
 		onglet1.addActionListener( new ActionListener() {
              
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame GestionU = new Frame("gestionU");
+            	Frame GestionU = null;
+				try {
+					GestionU = new Frame("gestionU");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	GestionU.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             	GestionU.setVisible(true);
             	GestionU.setSize(730, 400);
@@ -40,7 +53,16 @@ public class Menu extends JPanel implements ActionListener {
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame GestionC = new Frame("gestionC");
+            	Frame GestionC = null;
+				try {
+					GestionC = new Frame("gestionC");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	GestionC.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             	GestionC.setVisible(true);
             	GestionC.setSize(740, 400);
@@ -52,7 +74,16 @@ public class Menu extends JPanel implements ActionListener {
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame Factures = new Frame("gestionF");
+            	Frame Factures = null;
+				try {
+					Factures = new Frame("gestionF");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	Factures.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             	Factures.setVisible(true);
             	Factures.setSize(680, 400);
@@ -64,7 +95,16 @@ public class Menu extends JPanel implements ActionListener {
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame Contrats = new Frame("gestionCo");
+            	Frame Contrats = null;
+				try {
+					Contrats = new Frame("gestionCo");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	Contrats.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             	Contrats.setVisible(true);
             	Contrats.setSize(680, 400);

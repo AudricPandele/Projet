@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.sql.SQLException;
 public class swing_sample extends JFrame
 {
     //declaring our swing components
@@ -92,7 +93,16 @@ public class swing_sample extends JFrame
                 if(db.checkLogin(t_name.getText(), pwd))
                 {
                     
-                    Frame menu = new Frame("menu");
+                    Frame menu = null;
+					try {
+						menu = new Frame("menu");
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                     menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             		menu.setVisible(true);
             		menu.setLocationRelativeTo(null);

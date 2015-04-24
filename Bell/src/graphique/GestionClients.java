@@ -20,7 +20,7 @@ public class GestionClients extends JPanel implements ActionListener {
 	public GestionClients(){		
 		setLayout(null);
 		JCheckBox onglet1 = new JCheckBox();
-		JLabel flname =new JLabel("Nom - Prénom");
+		JLabel flname =new JLabel("Nom - Prï¿½nom");
 		JLabel delete =new JLabel("Supprimer");
 		JButton contrats = new JButton("Voir Contrat");
 		JButton addClient = new JButton("Ajouter client");
@@ -57,7 +57,16 @@ public class GestionClients extends JPanel implements ActionListener {
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame contrats = new Frame("contrats");
+            	Frame contrats = null;
+				try {
+					contrats = new Frame("contrats");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	contrats.setSize(420,400);
             	contrats.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             	contrats.setVisible(true);
