@@ -29,11 +29,17 @@ public class GestionUtilisateurs extends JFrame implements ActionListener {
 		Connection connection = conn.getConnect();
 
 		Statement statement = (Statement) connection.createStatement();
+		Statement statement2 = (Statement) connection.createStatement();
 		ResultSet resultat = statement.executeQuery( "SELECT *  FROM user;" );
-		
+		ResultSet count = statement2.executeQuery( "SELECT *  FROM user;" );
+		int size = 0;
+		while (count.next()){
+			size++;
+		}
+		//System.out.println(count.getInt(1));
 		// Je stocke tous les noms et prénoms dans les arrayList
 		
-		String data[][]= new String [10000][6];
+		String data[][]= new String [size][6];
 		int i =0;
 		String toto = "toto";
 		while (resultat.next()) {
