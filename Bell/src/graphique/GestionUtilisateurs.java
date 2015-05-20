@@ -35,40 +35,15 @@ public class GestionUtilisateurs extends JFrame implements ActionListener {
 		
 		String data[][]= new String [10000][6];
 		int i =0;
-		int j=0;
 		String toto = "toto";
 		while (resultat.next()) {
+			int j=0;
 			while(j<6){
-				if(j==0){
-					data[i][j]=resultat.getString(1);
-					System.out.println("toto");
+					data[i][j]=resultat.getString(j+1);
 					j++;
-				}
-				else if(j==1){
-					data[i][j]=resultat.getString(2);
-					j++;
-				}
-				else if(j==2){
-					data[i][j]=resultat.getString(3);
-					j++;
-				}
-
-				else if(j==3){
-					data[i][j]=resultat.getString(4);
-					j++;
-				}
-				else if(j==4){
-					data[i][j]=resultat.getString(5);
-					j++;
-				}
-				else if(j==5){
-					data[i][j]=resultat.getString(6);
-					j++;
-				}
 			}
 			i++;
 		}
-
 		this.setLayout(new GridLayout(1,1));
 		
 		String title[] = {"ID", "Nom","Prénom","Age","Login"};
