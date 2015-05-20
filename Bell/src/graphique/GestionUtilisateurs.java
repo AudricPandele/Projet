@@ -14,28 +14,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.AbstractListModel;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
+import javax.swing.*;
 
 import com.mysql.jdbc.Statement;
 
 import beans.User;
 
-public class GestionUtilisateurs extends JPanel implements ActionListener {
+public class GestionUtilisateurs extends JFrame implements ActionListener {
 	private Dimension buttonConnDim;
-	private ArrayList<String> noms = new ArrayList<String>();
-	private ArrayList<String> prenoms = new ArrayList<String>();
+	private ArrayList<String> tableaux = new ArrayList<String>();
 
 	public GestionUtilisateurs() throws ClassNotFoundException, SQLException{	
 		Conn conn = new Conn();
@@ -45,102 +32,49 @@ public class GestionUtilisateurs extends JPanel implements ActionListener {
 		ResultSet resultat = statement.executeQuery( "SELECT *  FROM user;" );
 		
 		// Je stocke tous les noms et pr√©noms dans les arrayList
+		
+		String data[][]= new String [10000][6];
+		int i =0;
+		int j=0;
+		String toto = "toto";
 		while (resultat.next()) {
-			
-			noms.add(resultat.getString(2));
-			prenoms.add(resultat.getString(3));
+			while(j<6){
+				if(j==0){
+					data[i][j]=resultat.getString(1);
+					System.out.println("toto");
+					j++;
+				}
+				else if(j==1){
+					data[i][j]=resultat.getString(2);
+					j++;
+				}
+				else if(j==2){
+					data[i][j]=resultat.getString(3);
+					j++;
+				}
+
+				else if(j==3){
+					data[i][j]=resultat.getString(4);
+					j++;
+				}
+				else if(j==4){
+					data[i][j]=resultat.getString(5);
+					j++;
+				}
+				else if(j==5){
+					data[i][j]=resultat.getString(6);
+					j++;
+				}
+			}
+			i++;
 		}
+
+		this.setLayout(new GridLayout(1,1));
 		
-		 //On crÈe nos diffÈrents conteneurs de couleur diffÈrente
-	    JPanel cell1 = new JPanel();
-	    cell1.setBackground(Color.YELLOW);
-	    cell1.setPreferredSize(new Dimension(100, 20));		
-	    JPanel cell2 = new JPanel();
-	    cell2.setBackground(Color.red);
-	    cell2.setPreferredSize(new Dimension(100, 20));
-	    JPanel cell3 = new JPanel();
-	    cell3.setBackground(Color.green);
-	    cell3.setPreferredSize(new Dimension(100, 20));
-	    JPanel cell4 = new JPanel();
-	    cell4.setBackground(Color.black);
-	    cell4.setPreferredSize(new Dimension(100, 20));
-	    JPanel cell5 = new JPanel();
-	    cell5.setBackground(Color.cyan);
-	    cell5.setPreferredSize(new Dimension(100, 20));
-	    JPanel cell6 = new JPanel();
-	    cell6.setBackground(Color.BLUE);
-	    cell6.setPreferredSize(new Dimension(500, 300));
-			
-	    //Le conteneur principal
-	    //On dÈfinit le layout manager
-	    setLayout(new GridBagLayout());
-			
-	    //L'objet servant ‡ positionner les composants
-	    GridBagConstraints gbc = new GridBagConstraints();
-	    //Start
-	    gbc.gridx=0;
-	    gbc.gridy=0;
-		gbc.gridheight = 1;
-	    gbc.gridwidth = 1;
-	    add(cell1,gbc);
-	    //--
-	    gbc.gridx=1;
-	    add(cell2,gbc);
-	    
-	    gbc.gridx=2;
-	    add(cell3,gbc);
-	    
-	    gbc.gridx=3;
-	    add(cell4,gbc);
-	    
-	    gbc.gridx=4;
-	    add(cell5,gbc);
-	    		
-		JLabel flname =new JLabel("Nom - PrÈnom");
-		cell1.add(flname);
-		JLabel member =new JLabel("Membre");
-		cell2.add(member);
-		JLabel employee =new JLabel("Employee");
-		cell3.add(employee);
-		JLabel moderator =new JLabel("Moderateur");
-		cell4.add(moderator);
-		JLabel admin =new JLabel("Admin");
-		cell5.add(admin);
-		int i=0;
-		while(i<noms.size()){
-			JPanel mini = new JPanel();
-			mini.setPreferredSize(new Dimension(500, 300));	
-			JLabel name =new JLabel(prenoms.get(i));
-			mini.add(name);
-			JButton submit = new JButton("Enregistrer");
-			mini.add(name);
-	        JRadioButton onglet1 = new JRadioButton();
-	        JRadioButton onglet2 = new JRadioButton();
-	        JRadioButton onglet3 = new JRadioButton();
-	        JRadioButton onglet4 = new JRadioButton();
-	        ButtonGroup bg = new ButtonGroup();
-			bg.add(onglet1);
-		    bg.add(onglet2);
-		    bg.add(onglet3);
-		    bg.add(onglet4);
-		    onglet1.setSelected(true);
-		    mini.add(onglet1);
-		    mini.add(onglet2);
-		    mini.add(onglet3);
-		    mini.add(onglet4);
-	        mini.add(submit);
-		    i++;
+		String title[] = {"ID", "Nom","PrÈnom","Age","Login"};
 		
-		}
-		// MAIS JE N'Y ARRIVE PAS (enculÈ)
-        //add(submit);
-       
-		
-		//buttonConnDim = submit.getPreferredSize();
-		//submit.setBounds(600, 60, 100, 30);
-		
-		
-		
+		JTable table = new JTable(data,title);
+		this.getContentPane().add(new JScrollPane(table));		
 	}
 
 	public void actionPerformed1(ActionEvent arg0) {

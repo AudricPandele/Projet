@@ -29,9 +29,9 @@ public class Menu extends JPanel implements ActionListener {
              
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame GestionU = null;
+            	GestionUtilisateurs GestionU = null;
 				try {
-					GestionU = new Frame("gestionU");
+					GestionU = new GestionUtilisateurs();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
