@@ -1,6 +1,11 @@
 package graphique;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -10,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractListModel;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -17,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -42,63 +49,96 @@ public class GestionUtilisateurs extends JPanel implements ActionListener {
 			
 			noms.add(resultat.getString(2));
 			prenoms.add(resultat.getString(3));
-		} // IMPOSSIBLE D'UTILISER LES ELEMENT .GET  		
+		}
 		
-		setLayout(null);		
+		 //On crée nos différents conteneurs de couleur différente
+	    JPanel cell1 = new JPanel();
+	    cell1.setBackground(Color.YELLOW);
+	    cell1.setPreferredSize(new Dimension(100, 20));		
+	    JPanel cell2 = new JPanel();
+	    cell2.setBackground(Color.red);
+	    cell2.setPreferredSize(new Dimension(100, 20));
+	    JPanel cell3 = new JPanel();
+	    cell3.setBackground(Color.green);
+	    cell3.setPreferredSize(new Dimension(100, 20));
+	    JPanel cell4 = new JPanel();
+	    cell4.setBackground(Color.black);
+	    cell4.setPreferredSize(new Dimension(100, 20));
+	    JPanel cell5 = new JPanel();
+	    cell5.setBackground(Color.cyan);
+	    cell5.setPreferredSize(new Dimension(100, 20));
+	    JPanel cell6 = new JPanel();
+	    cell6.setBackground(Color.BLUE);
+	    cell6.setPreferredSize(new Dimension(500, 300));
+			
+	    //Le conteneur principal
+	    //On définit le layout manager
+	    setLayout(new GridBagLayout());
+			
+	    //L'objet servant à positionner les composants
+	    GridBagConstraints gbc = new GridBagConstraints();
+	    //Start
+	    gbc.gridx=0;
+	    gbc.gridy=0;
+		gbc.gridheight = 1;
+	    gbc.gridwidth = 1;
+	    add(cell1,gbc);
+	    //--
+	    gbc.gridx=1;
+	    add(cell2,gbc);
+	    
+	    gbc.gridx=2;
+	    add(cell3,gbc);
+	    
+	    gbc.gridx=3;
+	    add(cell4,gbc);
+	    
+	    gbc.gridx=4;
+	    add(cell5,gbc);
+	    		
 		JLabel flname =new JLabel("Nom - Prénom");
+		cell1.add(flname);
 		JLabel member =new JLabel("Membre");
+		cell2.add(member);
 		JLabel employee =new JLabel("Employee");
+		cell3.add(employee);
 		JLabel moderator =new JLabel("Moderateur");
+		cell4.add(moderator);
 		JLabel admin =new JLabel("Admin");
+		cell5.add(admin);
 		int i=0;
 		while(i<noms.size()){
+			JPanel mini = new JPanel();
+			mini.setPreferredSize(new Dimension(500, 300));	
 			JLabel name =new JLabel(prenoms.get(i));
+			mini.add(name);
 			JButton submit = new JButton("Enregistrer");
-	        add(name);
-	        add(submit);
-	        name.setBounds(10,i*30+60,100,20);
-	        submit.setBounds(600,i*30+60,100,20);
-	        JCheckBox onglet1 = new JCheckBox();
-			JCheckBox onglet2 = new JCheckBox();
-			JCheckBox onglet3 = new JCheckBox();
-			JCheckBox onglet4 = new JCheckBox();
-			add(onglet1);
-		    add(onglet2);
-		    add(onglet3);
-		    add(onglet4);
-
-			buttonConnDim = onglet1.getPreferredSize();
-			onglet1.setBounds(200, i*30+60, 20, 20);
-			
-			buttonConnDim = onglet2.getPreferredSize();
-			onglet2.setBounds(300, i*30+60, 20, 20);
-			
-			buttonConnDim = onglet3.getPreferredSize();
-			onglet3.setBounds(400, i*30+60, 20, 20);
-			
-			buttonConnDim = onglet4.getPreferredSize();
-			onglet4.setBounds(500, i*30+60, 20, 20);
-			i++;
-		}
-		// MAIS JE N'Y ARRIVE PAS (enculÃ©)
+			mini.add(name);
+	        JRadioButton onglet1 = new JRadioButton();
+	        JRadioButton onglet2 = new JRadioButton();
+	        JRadioButton onglet3 = new JRadioButton();
+	        JRadioButton onglet4 = new JRadioButton();
+	        ButtonGroup bg = new ButtonGroup();
+			bg.add(onglet1);
+		    bg.add(onglet2);
+		    bg.add(onglet3);
+		    bg.add(onglet4);
+		    onglet1.setSelected(true);
+		    mini.add(onglet1);
+		    mini.add(onglet2);
+		    mini.add(onglet3);
+		    mini.add(onglet4);
+	        mini.add(submit);
+		    i++;
 		
-       
-        add(flname);
-        add(member);
-        add(employee);
-        add(moderator);
-        add(admin);
+		}
+		// MAIS JE N'Y ARRIVE PAS (enculé)
         //add(submit);
        
 		
 		//buttonConnDim = submit.getPreferredSize();
 		//submit.setBounds(600, 60, 100, 30);
 		
-		flname.setBounds(10,10,150,25);
-		member.setBounds(200,10,150,25);
-		employee.setBounds(300,10,150,25);
-		moderator.setBounds(400,10,150,25);
-		admin.setBounds(500,10,150,25);
 		
 		
 	}
