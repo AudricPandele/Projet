@@ -36,10 +36,9 @@ public class GestionUtilisateurs extends JFrame implements ActionListener {
 		while (count.next()){
 			size++;
 		}
-		//System.out.println(count.getInt(1));
 		// Je stocke tous les noms et prÃ©noms dans les arrayList
 		
-		String data[][]= new String [size][6];
+		Object data[][]= new String [size][6];
 		int i =0;
 		String toto = "toto";
 		while (resultat.next()) {
@@ -48,14 +47,18 @@ public class GestionUtilisateurs extends JFrame implements ActionListener {
 					data[i][j]=resultat.getString(j+1);
 					j++;
 			}
-			i++;
 		}
-		this.setLayout(new GridLayout(1,1));
-		
-		String title[] = {"ID", "Nom","Prénom","Age","Login"};
-		
+		this.setLayout(new BorderLayout());		
+		String title[] = {"ID", "Nom","Prénom","Age","Login"," "};		
 		JTable table = new JTable(data,title);
-		this.getContentPane().add(new JScrollPane(table));		
+		this.getContentPane().add(new JScrollPane(table),BorderLayout.CENTER);
+		JPanel button=new JPanel();
+		button.setLayout(new FlowLayout());
+		JButton delete = new JButton("Supprimer");
+		JButton add= new JButton("Ajouter");
+		button.add(delete);
+		button.add(add);
+		this.getContentPane().add(button,BorderLayout.SOUTH);
 	}
 
 	public void actionPerformed1(ActionEvent arg0) {
