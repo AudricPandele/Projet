@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Jeu 26 Mars 2015 à 11:02
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.12
+-- Client :  127.0.0.1
+-- Généré le :  Jeu 21 Mai 2015 à 09:20
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `bellino`
+-- Base de données :  `bellino`
 --
-CREATE DATABASE IF NOT EXISTS `bellino` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `bellino`;
 
 -- --------------------------------------------------------
 
@@ -30,34 +28,23 @@ USE `bellino`;
 
 CREATE TABLE IF NOT EXISTS `contrat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fournisseur` varchar(255) NOT NULL,
-  `client` varchar(255) NOT NULL,
   `titre` varchar(255) NOT NULL,
+  `tache` int(11) NOT NULL,
+  `description` varchar(250) NOT NULL,
   `prix_global` float NOT NULL,
-  `date` date NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `fournisseur` (`fournisseur`,`client`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `date` varchar(255) NOT NULL,
+  `fournisseur` int(11) NOT NULL,
+  `client` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Contenu de la table `contrat`
 --
 
-INSERT INTO `contrat` (`id`, `fournisseur`, `client`, `titre`, `prix_global`, `date`) VALUES
-(1, 'fournisseur', 'client', 'TestContrat', 200, '2015-03-27');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `contrat_tache`
---
-
-CREATE TABLE IF NOT EXISTS `contrat_tache` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_contrat` int(11) NOT NULL,
-  `id_tache` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+INSERT INTO `contrat` (`id`, `titre`, `tache`, `description`, `prix_global`, `date`, `fournisseur`, `client`) VALUES
+(5, 'développement web', 1, 'Développement d''un site e-commerce', 10000, '21-05-15', 8, 9),
+(9, 'développement web', 1, 'développement web', 10000, '21-05-15', 8, 9);
 
 -- --------------------------------------------------------
 
@@ -72,14 +59,14 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
   `adresse` varchar(255) NOT NULL,
   `telephone` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `entreprise`
 --
 
 INSERT INTO `entreprise` (`id`, `nom`, `siret`, `adresse`, `telephone`) VALUES
-(1, 'Entreprise', 'LKSDJG4587', '1 rue Pasteur', 606060606);
+(8, 'Cdiscount', '125L84', '89 quai des chartrons', 661386327);
 
 -- --------------------------------------------------------
 
@@ -89,18 +76,21 @@ INSERT INTO `entreprise` (`id`, `nom`, `siret`, `adresse`, `telephone`) VALUES
 
 CREATE TABLE IF NOT EXISTS `facture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fournisseur` varchar(255) NOT NULL,
-  `client` varchar(255) NOT NULL,
-  `est_paye` tinyint(1) NOT NULL,
+  `fournisseur` int(11) NOT NULL,
+  `client` int(11) NOT NULL,
+  `est_paye` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Contenu de la table `facture`
 --
 
 INSERT INTO `facture` (`id`, `fournisseur`, `client`, `est_paye`) VALUES
-(1, 'Fournisseur', 'Client', 0);
+(18, 8, 9, 1),
+(19, 8, 9, 0),
+(20, 8, 9, 0),
+(21, 8, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -196,14 +186,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`id`, `nom`, `prenom`, `age`, `login`, `password`) VALUES
-(1, 'Laulhau', 'Auguste', 20, 'auguste', 'auguste');
+(5, 'Charbonier', 'Louis', 20, 'louis', 'louis');
 
 -- --------------------------------------------------------
 
