@@ -1,8 +1,11 @@
 package graphique;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -11,82 +14,55 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import com.mysql.jdbc.Statement;
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
 
 import beans.User;
+import beans.deleteClient;
 
-public class GestionClients extends JPanel implements ActionListener {
-	private Dimension buttonConnDim;
+public class GestionClients extends JFrame implements ActionListener {
 
-	public GestionClients(){		
-		setLayout(null);
-		JCheckBox onglet1 = new JCheckBox();
-		JLabel flname =new JLabel("Nom - Pr�nom");
-		JLabel delete =new JLabel("Supprimer");
-		JButton contrats = new JButton("Voir Contrat");
-		JButton addClient = new JButton("Ajouter client");
-		
-        add(onglet1);
-        add(flname);
-        add(contrats);
-        add(delete);
-        add(addClient);
-        
-        buttonConnDim = onglet1.getPreferredSize();
-        onglet1.setBounds(500, 60, 20, 20);
-        buttonConnDim = contrats.getPreferredSize();
-        contrats.setBounds(600, 60, 110, 20);
-        buttonConnDim = flname.getPreferredSize();
-		flname.setBounds(10,10,100,25);
-		buttonConnDim = delete.getPreferredSize();
-		delete.setBounds(500,10,110,25);
-		addClient.setBounds(500,300,110,25);
-		
-		addClient.addActionListener( new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-            	AddClient addClient = new AddClient();
-            	addClient.setVisible(true);
-            	addClient.setSize(420, 400);
-            	addClient.setResizable(false);
-            	addClient.setLocationRelativeTo(null);
-            }
-        });
-		
-		contrats.addActionListener( new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-            	Frame contrats = null;
-				try {
-					contrats = new Frame("contrats");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            	contrats.setSize(420,400);
-            	contrats.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            	contrats.setVisible(true);
-            	contrats.setLocationRelativeTo(null);
-            }
-        });
-		
-		
-		
-		
-		
-	}
+	public GestionClients()throws ClassNotFoundException, SQLException{		
 
-	public void actionPerformed1(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		this.setLayout(new BorderLayout());
+		JTable table = User.selectAllClient();
+		this.getContentPane().add(new JScrollPane(table),BorderLayout.CENTER);
+		JPanel button=new JPanel();
+		button.setLayout(new FlowLayout());
+		JButton delete = new JButton("Supprimer");
+		JButton add = new JButton("Ajouter");
+		button.add(delete);
+		button.add(add);
+		this.getContentPane().add(button,BorderLayout.SOUTH);
+		delete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				User.deleteClient(table);
+				dispose();
+			}
+		});
+		add.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddClient ajout = new AddClient();
+				ajout.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				ajout.setVisible(true);
+				ajout.setSize(420, 400);
+				ajout.setResizable(false);
+				ajout.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,12 +1,12 @@
-package graphique;
+package beans;
 
 import java.sql.*;
-public class insertContrat 
+public class insert 
 {
     Connection con;
     PreparedStatement pst;
     int rs;
-    public insertContrat()
+    public insert()
     {
         try{
              
@@ -14,7 +14,7 @@ public class insertContrat
             //ALSO SET THE CLASSPATH
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost/bellino","projet", "");
-            pst=con.prepareStatement("INSERT INTO contrat (titre, fournisseur, client, tache, description, prix_global, date) VALUES (?, ?, ?, ?, ?, ?, ?)");             
+            pst=con.prepareStatement("INSERT INTO user (nom, prenom, age, login, password) VALUES (?, ?, ?, ?, ?)");             
            }
         catch (Exception e) 
         {
@@ -24,16 +24,14 @@ public class insertContrat
     }
         //ip:username,password
         //return boolean
-    public Boolean checkLogin(String titre, int fournisseur, int client, int tache, String desc, float prix, String days)
+    public Boolean checkLogin(String uname, String pwd, String prnom, int age, String login)
     {
         try {                     
-            pst.setString(1, titre); //this replaces the 1st  "?" in the query for username
-            pst.setInt(2, fournisseur);    //this replaces the 2st  "?" in the query for password
-            pst.setInt(3, client); //this replaces the 1st  "?" in the query for username
-            pst.setInt(4, tache);    //this replaces the 2st  "?" in the query for password
-            pst.setString(5, desc);    //this replaces the 2st  "?" in the query for password
-            pst.setFloat(6, prix); //this replaces the 1st  "?" in the query for username
-            pst.setString(7, days);    //this replaces the 2st  "?" in the query for password
+            pst.setString(1, uname); //this replaces the 1st  "?" in the query for username
+            pst.setString(2, prnom);    //this replaces the 2st  "?" in the query for password
+            pst.setInt(3, age); //this replaces the 1st  "?" in the query for username
+            pst.setString(4, login);    //this replaces the 2st  "?" in the query for password
+            pst.setString(5, pwd); //this replaces the 1st  "?" in the query for username
  
             System.out.println("req = "+pst);
             //executes the prepared statement

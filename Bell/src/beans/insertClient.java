@@ -1,4 +1,4 @@
-package graphique;
+package beans;
 
 import java.sql.*;
 public class insertClient 

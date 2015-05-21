@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import beans.database;
+
 import java.awt.event.*;
 import java.sql.SQLException;
 public class swing_sample extends JFrame

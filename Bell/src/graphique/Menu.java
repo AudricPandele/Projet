@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import beans.Contrat;
 import beans.User;
 
 public class Menu extends JPanel implements ActionListener {
@@ -50,9 +51,9 @@ public class Menu extends JPanel implements ActionListener {
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame GestionC = null;
+            	GestionClients GestionC= null;
 				try {
-					GestionC = new Frame("gestionC");
+					GestionC = new GestionClients();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -71,9 +72,9 @@ public class Menu extends JPanel implements ActionListener {
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame Factures = null;
+            	Factures Factures = null;
 				try {
-					Factures = new Frame("gestionF");
+					Factures = new Factures();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -92,9 +93,9 @@ public class Menu extends JPanel implements ActionListener {
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	Frame Contrats = null;
+            	GestionContrats Contrats = null;
 				try {
-					Contrats = new Frame("gestionCo");
+					Contrats = new GestionContrats();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

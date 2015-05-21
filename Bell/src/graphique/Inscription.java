@@ -6,6 +6,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import beans.User;
+
 import java.awt.event.*;
 
 public class Inscription extends JFrame
@@ -17,20 +19,15 @@ public class Inscription extends JFrame
     JButton button;
  
     //a inner class to handling ActionEvents
-    handler handle;
  
     //a separate class for processing database connection and authentication
-    insert db;
  
     public Inscription()
     {
         super("Inscription");
  
  
-        //extra classes
-        db=new insert();
-            handle =new handler();
- 
+        //extra classes 
             setLayout(null);
                 //swing components
             l_name=new JLabel("Nom");
@@ -60,6 +57,14 @@ public class Inscription extends JFrame
            			dispose();
                }
            });
+           	button.addActionListener( new ActionListener() {
+               
+               @Override
+               public void actionPerformed(ActionEvent arg0) {
+            	    User.inscription(t_pass, t_age, t_login, t_name, t_prenom);
+           			dispose();
+               }
+           });
  
        
         
@@ -76,8 +81,6 @@ public class Inscription extends JFrame
         button.setBounds(50, 310, 100, 20);
         button2.setBounds(250, 310, 100, 20);
         
-        //adding actionlistener to the button
-        button.addActionListener(handle);
  
         //add to contaienr
         add(l_name);
@@ -97,55 +100,4 @@ public class Inscription extends JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
     }
- 
-    //an inner class .You can also write as a separate class
-    class handler implements ActionListener
-    {
-        //must implement method
-        //This is triggered whenever the user clicks the login button
-        public void actionPerformed(ActionEvent ae)
-        {
-            //checks if the button clicked
-            if(ae.getSource()==button)
-            {
-            	// Récupère mdp
-                char[] temp_pwd=t_pass.getPassword();
-                String pwd=null;
-                pwd=String.copyValueOf(temp_pwd);
-                
-                // Récupère age
-                int age = Integer.parseInt(t_age.getText());
-                
-                System.out.println(age+" "+t_name.getText()+" "+pwd+" "+t_prenom.getText()+" "+t_login.getText());
- 
-                //The entered username and password are sent via "checkLogin()" which return boolean
-                if(db.checkLogin(t_name.getText(), pwd, t_prenom.getText(), age, t_login.getText()))
-                {
-                    //a pop-up box
-                    JOptionPane.showMessageDialog(null, "You have logged in successfully","Success",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                    //Frame menu = new Frame("menu");
-                    //menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            		//menu.setVisible(true);
-            		//dispose();
-                    swing_sample sample = new swing_sample();
-                    dispose();
-                }
-                else
-                {
-                    //a pop-up box
-                    JOptionPane.showMessageDialog(null, "Inscription failed!","Failed!!",
-                                        JOptionPane.ERROR_MESSAGE);
-                }
-            }//if
-            
-            else
-            {
-            	//a pop-up box
-                JOptionPane.showMessageDialog(null, "Inscription failed!","Failed!!",
-                                    JOptionPane.ERROR_MESSAGE);
-            }
-        }//method
- 
-    }//Inner class
 }//class
