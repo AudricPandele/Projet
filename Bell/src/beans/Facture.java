@@ -75,7 +75,6 @@ public class Facture {
 		int clientS = Integer.parseInt(client2);
         java.util.Date date = new java.util.Date();        
         System.out.println(fournisseur2+" "+client2);
-
         //The entered username and password are sent via "checkLogin()" which return boolean
         if(db.checkLogin(fournisseurS, clientS));
         { 

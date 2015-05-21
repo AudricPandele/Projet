@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import beans.User;
 import beans.database;
 
 import java.awt.event.*;
@@ -18,8 +19,6 @@ public class swing_sample extends JFrame
     JButton buttonins;
     Container c;
  
-    //a inner class to handling ActionEvents
-    handler handle;
  
     //a separate class for processing database connection and authentication
     database db;
@@ -32,9 +31,7 @@ public class swing_sample extends JFrame
         c.setLayout(new FlowLayout());
  
         //extra classes
-        db=new database();
-            handle =new handler();
- 
+        db=new database(); 
                 //swing components
         l_name=new JLabel("Username");
         l_pass=new JLabel("Password");
@@ -44,7 +41,20 @@ public class swing_sample extends JFrame
         buttonins=new JButton("Inscription");
  
         //adding actionlistener to the button
-        button.addActionListener(handle);
+        button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					User.connexion(t_name, t_pass);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        		dispose();
+			}
+		});
  
         //add to contaienr
         c.add(l_name);
@@ -74,50 +84,4 @@ public class swing_sample extends JFrame
 		});
  
     }
- 
-    //an inner class .You can also write as a separate class
-    class handler implements ActionListener
-    {
-        //must implement method
-        //This is triggered whenever the user clicks the login button
-        public void actionPerformed(ActionEvent ae)
-        {
-            //checks if the button clicked
-        	
-            if(ae.getSource()==button)
-            {
-                char[] temp_pwd=t_pass.getPassword();
-                String pwd=null;
-                pwd=String.copyValueOf(temp_pwd);
-                System.out.println("Username,Pwd:"+t_name.getText()+","+pwd);
- 
-                //The entered username and password are sent via "checkLogin()" which return boolean
-                if(db.checkLogin(t_name.getText(), pwd))
-                {
-                    
-                    Frame menu = null;
-					try {
-						menu = new Frame("menu");
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                    menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            		menu.setVisible(true);
-            		menu.setLocationRelativeTo(null);
-            		dispose();
-                }
-                else
-                {
-                    //a pop-up box
-                    JOptionPane.showMessageDialog(null, "Login failed!","Failed!!",
-                                        JOptionPane.ERROR_MESSAGE);
-                }
-            }//if
-        }//method
- 
-    }//inner class
 }//class

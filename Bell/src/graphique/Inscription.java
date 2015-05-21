@@ -1,7 +1,5 @@
 package graphique;
 
-import graphique.swing_sample.handler;
-
 import java.awt.*;
 
 import javax.swing.*;

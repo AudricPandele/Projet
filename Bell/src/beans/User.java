@@ -2,6 +2,7 @@ package beans;
 
 import graphique.AddClient;
 import graphique.Conn;
+import graphique.Frame;
 import graphique.swing_sample;
 
 import java.awt.BorderLayout;
@@ -147,6 +148,28 @@ public class User {
             //a pop-up box
             JOptionPane.showMessageDialog(null, "Inscription failed!","Failed!!",
                                 JOptionPane.ERROR_MESSAGE);
+        }
+	}
+	public static void connexion(JTextField t_name, JPasswordField t_pass) throws ClassNotFoundException, SQLException{
+		database db=new database();
+		char[] temp_pwd=t_pass.getPassword();
+        String pwd=null;
+        pwd=String.copyValueOf(temp_pwd);
+        System.out.println("Username,Pwd:"+t_name.getText()+","+pwd);
+
+        //The entered username and password are sent via "checkLogin()" which return boolean
+        if(db.checkLogin(t_name.getText(), pwd))
+        {
+        	Frame menu = new Frame("menu");
+	        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    	menu.setVisible(true);
+	    	menu.setLocationRelativeTo(null);
+        }
+        else
+        {
+            //a pop-up box
+            JOptionPane.showMessageDialog(null, "Login failed!","Failed!!",
+            JOptionPane.ERROR_MESSAGE);
         }
 	}
 }	
